@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.turan.dao.ActiveAlarm0x64DAO">
+  <resultMap id="BaseResultMap" type="com.turan.po.ActiveAlarm0x64">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="alarm_no" jdbcType="BIGINT" property="alarmNo" />
+    <result column="vehicle_no" jdbcType="BIGINT" property="vehicleNo" />
+    <result column="alarm_id" jdbcType="INTEGER" property="alarmId" />
+    <result column="mark_status" jdbcType="INTEGER" property="markStatus" />
+    <result column="alarm_type" jdbcType="INTEGER" property="alarmType" />
+    <result column="alarm_level" jdbcType="INTEGER" property="alarmLevel" />
+    <result column="deviation_type" jdbcType="INTEGER" property="deviationType" />
+    <result column="road_mark_type" jdbcType="INTEGER" property="roadMarkType" />
+    <result column="road_mark_data" jdbcType="INTEGER" property="roadMarkData" />
+    <result column="speed" jdbcType="INTEGER" property="speed" />
+    <result column="height" jdbcType="INTEGER" property="height" />
+    <result column="latitude" jdbcType="INTEGER" property="latitude" />
+    <result column="longitude" jdbcType="INTEGER" property="longitude" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+    <result column="status_bit" jdbcType="INTEGER" property="statusBit" />
+    <result column="dev_id" jdbcType="VARCHAR" property="devId" />
+    <result column="mark_time" jdbcType="TIMESTAMP" property="markTime" />
+    <result column="mark_sequence" jdbcType="INTEGER" property="markSequence" />
+    <result column="attachment_num" jdbcType="INTEGER" property="attachmentNum" />
+    <result column="reserve" jdbcType="INTEGER" property="reserve" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, alarm_no, vehicle_no, alarm_id, mark_status, alarm_type, alarm_level, deviation_type, 
+    road_mark_type, road_mark_data, speed, height, latitude, longitude, `time`, status_bit, 
+    dev_id, mark_time, mark_sequence, attachment_num, reserve
+  </sql>
+  <select id="selectByExample" parameterType="com.turan.po.ActiveAlarm0x64Example" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from active_alarm_0x64
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+    <if test="forUpdate != null and forUpdate == true">
+      for update
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from active_alarm_0x64
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from active_alarm_0x64
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.turan.po.ActiveAlarm0x64Example">
+    delete from active_alarm_0x64
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.turan.po.ActiveAlarm0x64">
+    insert into active_alarm_0x64 (id, alarm_no, vehicle_no, 
+      alarm_id, mark_status, alarm_type, 
+      alarm_level, deviation_type, road_mark_type, 
+      road_mark_data, speed, height, 
+      latitude, longitude, `time`, 
+      status_bit, dev_id, mark_time, 
+      mark_sequence, attachment_num, reserve
+      )
+    values (#{id,jdbcType=BIGINT}, #{alarmNo,jdbcType=BIGINT}, #{vehicleNo,jdbcType=BIGINT}, 
+      #{alarmId,jdbcType=INTEGER}, #{markStatus,jdbcType=INTEGER}, #{alarmType,jdbcType=INTEGER}, 
+      #{alarmLevel,jdbcType=INTEGER}, #{deviationType,jdbcType=INTEGER}, #{roadMarkType,jdbcType=INTEGER}, 
+      #{roadMarkData,jdbcType=INTEGER}, #{speed,jdbcType=INTEGER}, #{height,jdbcType=INTEGER}, 
+      #{latitude,jdbcType=INTEGER}, #{longitude,jdbcType=INTEGER}, #{time,jdbcType=TIMESTAMP}, 
+      #{statusBit,jdbcType=INTEGER}, #{devId,jdbcType=VARCHAR}, #{markTime,jdbcType=TIMESTAMP}, 
+      #{markSequence,jdbcType=INTEGER}, #{attachmentNum,jdbcType=INTEGER}, #{reserve,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.turan.po.ActiveAlarm0x64">
+    insert into active_alarm_0x64
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="alarmNo != null">
+        alarm_no,
+      </if>
+      <if test="vehicleNo != null">
+        vehicle_no,
+      </if>
+      <if test="alarmId != null">
+        alarm_id,
+      </if>
+      <if test="markStatus != null">
+        mark_status,
+      </if>
+      <if test="alarmType != null">
+        alarm_type,
+      </if>
+      <if test="alarmLevel != null">
+        alarm_level,
+      </if>
+      <if test="deviationType != null">
+        deviation_type,
+      </if>
+      <if test="roadMarkType != null">
+        road_mark_type,
+      </if>
+      <if test="roadMarkData != null">
+        road_mark_data,
+      </if>
+      <if test="speed != null">
+        speed,
+      </if>
+      <if test="height != null">
+        height,
+      </if>
+      <if test="latitude != null">
+        latitude,
+      </if>
+      <if test="longitude != null">
+        longitude,
+      </if>
+      <if test="time != null">
+        `time`,
+      </if>
+      <if test="statusBit != null">
+        status_bit,
+      </if>
+      <if test="devId != null">
+        dev_id,
+      </if>
+      <if test="markTime != null">
+        mark_time,
+      </if>
+      <if test="markSequence != null">
+        mark_sequence,
+      </if>
+      <if test="attachmentNum != null">
+        attachment_num,
+      </if>
+      <if test="reserve != null">
+        reserve,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="alarmNo != null">
+        #{alarmNo,jdbcType=BIGINT},
+      </if>
+      <if test="vehicleNo != null">
+        #{vehicleNo,jdbcType=BIGINT},
+      </if>
+      <if test="alarmId != null">
+        #{alarmId,jdbcType=INTEGER},
+      </if>
+      <if test="markStatus != null">
+        #{markStatus,jdbcType=INTEGER},
+      </if>
+      <if test="alarmType != null">
+        #{alarmType,jdbcType=INTEGER},
+      </if>
+      <if test="alarmLevel != null">
+        #{alarmLevel,jdbcType=INTEGER},
+      </if>
+      <if test="deviationType != null">
+        #{deviationType,jdbcType=INTEGER},
+      </if>
+      <if test="roadMarkType != null">
+        #{roadMarkType,jdbcType=INTEGER},
+      </if>
+      <if test="roadMarkData != null">
+        #{roadMarkData,jdbcType=INTEGER},
+      </if>
+      <if test="speed != null">
+        #{speed,jdbcType=INTEGER},
+      </if>
+      <if test="height != null">
+        #{height,jdbcType=INTEGER},
+      </if>
+      <if test="latitude != null">
+        #{latitude,jdbcType=INTEGER},
+      </if>
+      <if test="longitude != null">
+        #{longitude,jdbcType=INTEGER},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="statusBit != null">
+        #{statusBit,jdbcType=INTEGER},
+      </if>
+      <if test="devId != null">
+        #{devId,jdbcType=VARCHAR},
+      </if>
+      <if test="markTime != null">
+        #{markTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="markSequence != null">
+        #{markSequence,jdbcType=INTEGER},
+      </if>
+      <if test="attachmentNum != null">
+        #{attachmentNum,jdbcType=INTEGER},
+      </if>
+      <if test="reserve != null">
+        #{reserve,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.turan.po.ActiveAlarm0x64Example" resultType="java.lang.Long">
+    select count(*) from active_alarm_0x64
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update active_alarm_0x64
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.alarmNo != null">
+        alarm_no = #{record.alarmNo,jdbcType=BIGINT},
+      </if>
+      <if test="record.vehicleNo != null">
+        vehicle_no = #{record.vehicleNo,jdbcType=BIGINT},
+      </if>
+      <if test="record.alarmId != null">
+        alarm_id = #{record.alarmId,jdbcType=INTEGER},
+      </if>
+      <if test="record.markStatus != null">
+        mark_status = #{record.markStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.alarmType != null">
+        alarm_type = #{record.alarmType,jdbcType=INTEGER},
+      </if>
+      <if test="record.alarmLevel != null">
+        alarm_level = #{record.alarmLevel,jdbcType=INTEGER},
+      </if>
+      <if test="record.deviationType != null">
+        deviation_type = #{record.deviationType,jdbcType=INTEGER},
+      </if>
+      <if test="record.roadMarkType != null">
+        road_mark_type = #{record.roadMarkType,jdbcType=INTEGER},
+      </if>
+      <if test="record.roadMarkData != null">
+        road_mark_data = #{record.roadMarkData,jdbcType=INTEGER},
+      </if>
+      <if test="record.speed != null">
+        speed = #{record.speed,jdbcType=INTEGER},
+      </if>
+      <if test="record.height != null">
+        height = #{record.height,jdbcType=INTEGER},
+      </if>
+      <if test="record.latitude != null">
+        latitude = #{record.latitude,jdbcType=INTEGER},
+      </if>
+      <if test="record.longitude != null">
+        longitude = #{record.longitude,jdbcType=INTEGER},
+      </if>
+      <if test="record.time != null">
+        `time` = #{record.time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.statusBit != null">
+        status_bit = #{record.statusBit,jdbcType=INTEGER},
+      </if>
+      <if test="record.devId != null">
+        dev_id = #{record.devId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.markTime != null">
+        mark_time = #{record.markTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.markSequence != null">
+        mark_sequence = #{record.markSequence,jdbcType=INTEGER},
+      </if>
+      <if test="record.attachmentNum != null">
+        attachment_num = #{record.attachmentNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.reserve != null">
+        reserve = #{record.reserve,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update active_alarm_0x64
+    set id = #{record.id,jdbcType=BIGINT},
+      alarm_no = #{record.alarmNo,jdbcType=BIGINT},
+      vehicle_no = #{record.vehicleNo,jdbcType=BIGINT},
+      alarm_id = #{record.alarmId,jdbcType=INTEGER},
+      mark_status = #{record.markStatus,jdbcType=INTEGER},
+      alarm_type = #{record.alarmType,jdbcType=INTEGER},
+      alarm_level = #{record.alarmLevel,jdbcType=INTEGER},
+      deviation_type = #{record.deviationType,jdbcType=INTEGER},
+      road_mark_type = #{record.roadMarkType,jdbcType=INTEGER},
+      road_mark_data = #{record.roadMarkData,jdbcType=INTEGER},
+      speed = #{record.speed,jdbcType=INTEGER},
+      height = #{record.height,jdbcType=INTEGER},
+      latitude = #{record.latitude,jdbcType=INTEGER},
+      longitude = #{record.longitude,jdbcType=INTEGER},
+      `time` = #{record.time,jdbcType=TIMESTAMP},
+      status_bit = #{record.statusBit,jdbcType=INTEGER},
+      dev_id = #{record.devId,jdbcType=VARCHAR},
+      mark_time = #{record.markTime,jdbcType=TIMESTAMP},
+      mark_sequence = #{record.markSequence,jdbcType=INTEGER},
+      attachment_num = #{record.attachmentNum,jdbcType=INTEGER},
+      reserve = #{record.reserve,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.turan.po.ActiveAlarm0x64">
+    update active_alarm_0x64
+    <set>
+      <if test="alarmNo != null">
+        alarm_no = #{alarmNo,jdbcType=BIGINT},
+      </if>
+      <if test="vehicleNo != null">
+        vehicle_no = #{vehicleNo,jdbcType=BIGINT},
+      </if>
+      <if test="alarmId != null">
+        alarm_id = #{alarmId,jdbcType=INTEGER},
+      </if>
+      <if test="markStatus != null">
+        mark_status = #{markStatus,jdbcType=INTEGER},
+      </if>
+      <if test="alarmType != null">
+        alarm_type = #{alarmType,jdbcType=INTEGER},
+      </if>
+      <if test="alarmLevel != null">
+        alarm_level = #{alarmLevel,jdbcType=INTEGER},
+      </if>
+      <if test="deviationType != null">
+        deviation_type = #{deviationType,jdbcType=INTEGER},
+      </if>
+      <if test="roadMarkType != null">
+        road_mark_type = #{roadMarkType,jdbcType=INTEGER},
+      </if>
+      <if test="roadMarkData != null">
+        road_mark_data = #{roadMarkData,jdbcType=INTEGER},
+      </if>
+      <if test="speed != null">
+        speed = #{speed,jdbcType=INTEGER},
+      </if>
+      <if test="height != null">
+        height = #{height,jdbcType=INTEGER},
+      </if>
+      <if test="latitude != null">
+        latitude = #{latitude,jdbcType=INTEGER},
+      </if>
+      <if test="longitude != null">
+        longitude = #{longitude,jdbcType=INTEGER},
+      </if>
+      <if test="time != null">
+        `time` = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="statusBit != null">
+        status_bit = #{statusBit,jdbcType=INTEGER},
+      </if>
+      <if test="devId != null">
+        dev_id = #{devId,jdbcType=VARCHAR},
+      </if>
+      <if test="markTime != null">
+        mark_time = #{markTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="markSequence != null">
+        mark_sequence = #{markSequence,jdbcType=INTEGER},
+      </if>
+      <if test="attachmentNum != null">
+        attachment_num = #{attachmentNum,jdbcType=INTEGER},
+      </if>
+      <if test="reserve != null">
+        reserve = #{reserve,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.turan.po.ActiveAlarm0x64">
+    update active_alarm_0x64
+    set alarm_no = #{alarmNo,jdbcType=BIGINT},
+      vehicle_no = #{vehicleNo,jdbcType=BIGINT},
+      alarm_id = #{alarmId,jdbcType=INTEGER},
+      mark_status = #{markStatus,jdbcType=INTEGER},
+      alarm_type = #{alarmType,jdbcType=INTEGER},
+      alarm_level = #{alarmLevel,jdbcType=INTEGER},
+      deviation_type = #{deviationType,jdbcType=INTEGER},
+      road_mark_type = #{roadMarkType,jdbcType=INTEGER},
+      road_mark_data = #{roadMarkData,jdbcType=INTEGER},
+      speed = #{speed,jdbcType=INTEGER},
+      height = #{height,jdbcType=INTEGER},
+      latitude = #{latitude,jdbcType=INTEGER},
+      longitude = #{longitude,jdbcType=INTEGER},
+      `time` = #{time,jdbcType=TIMESTAMP},
+      status_bit = #{statusBit,jdbcType=INTEGER},
+      dev_id = #{devId,jdbcType=VARCHAR},
+      mark_time = #{markTime,jdbcType=TIMESTAMP},
+      mark_sequence = #{markSequence,jdbcType=INTEGER},
+      attachment_num = #{attachmentNum,jdbcType=INTEGER},
+      reserve = #{reserve,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
